@@ -5,6 +5,9 @@ export interface Neo {
 export interface NearEarthObject {
     name: string
     estimated_diameter: EstimatedDiameter
+    close_approach_data?: {
+        orbiting_body: string
+    }[]
 }
 
 export interface EstimatedDiameter {
@@ -38,5 +41,7 @@ export type ParsedNearEarthObject = {
     name: string,
     minDiameter: number,
     maxDiameter: number,
-    avgDiameter: number
+    avgDiameter: number,
+    orbitingBodies: string[];
+
 }  
