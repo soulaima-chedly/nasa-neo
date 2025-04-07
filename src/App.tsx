@@ -1,26 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Chart } from "./components/Chart";
+import { useFetchNeo } from "./hooks/useFetchNeo";
 
-function App() {
+export default function App() {
+  const { data, loading, error } = useFetchNeo();
+
+  if (loading) return <p className="text-center mt-10 text-lg">Loading...</p>;
+  if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="p-8 max-w-5xl mx-auto container">
+      <h1 className="text-3xl font-bold mb-6 text-center">Near Earth Objects (Diameter Overview)</h1>
+      <Chart data={data} />
     </div>
   );
 }
-
-export default App;
